@@ -1,9 +1,13 @@
 /* istanbul ignore file */
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import counterReducer from "../features/counter/counterSlide";
 
-export default configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
-});
+const rootReducer = combineReducers({
+  counter: counterReducer
+})
+export function setupStore(preloadedState) {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState
+  })
+}

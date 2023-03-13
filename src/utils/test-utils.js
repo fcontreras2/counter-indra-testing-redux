@@ -1,20 +1,20 @@
 import React from 'react'
-import { render as rtlRender } from '@testing-library/react'
-import { configureStore } from '@reduxjs/toolkit'
+import { render } from '@testing-library/react'
 import { Provider } from 'react-redux'
-import counterReducer from '../features/counter/counterSlide';
 
-export function render(
+import { setupStore } from '../app/store'
+
+export function renderWithProviders(
   ui,
   {
-    initialState = {},
-    store = configureStore({ reducer: { counter: counterReducer }, initialState }),
+    preloadedState = {},
+    // Automatically create a store instance if no store was passed in
+    store = setupStore(preloadedState),
     ...renderOptions
   } = {}
 ) {
   function Wrapper({ children }) {
     return <Provider store={store}>{children}</Provider>
   }
-
-  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions })
+  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) }
 }

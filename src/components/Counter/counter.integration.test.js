@@ -1,13 +1,13 @@
 import { fireEvent, screen } from "@testing-library/react";
 import Counter from ".";
-import { render } from "../../utils/test-utils";
+import { renderWithProviders } from "../../utils/test-utils";
 
 let buttonAdd;
 let buttonSubtract;
 let buttonReset;
 
 beforeEach(() => {
-  render(<Counter />);
+  renderWithProviders(<Counter />);
   buttonAdd = screen.getByRole("button", { name: /incrementar/i });
   buttonSubtract = screen.getByRole("button", { name: /decrementar/i });
   buttonReset = screen.getByRole("button", { name: /reiniciar/i });

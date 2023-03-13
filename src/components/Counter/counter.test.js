@@ -1,9 +1,9 @@
 import { screen } from "@testing-library/react";
 import Counter from ".";
-import { render } from "../../utils/test-utils";
+import { renderWithProviders } from "../../utils/test-utils";
 
 beforeEach(() => {
-  render(<Counter />);
+  renderWithProviders(<Counter />);
 });
 
 describe("Pruebas unitarias de mi contador", () => {
